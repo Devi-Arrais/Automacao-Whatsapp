@@ -1,0 +1,1 @@
+Fiz um script para automatizar um preencimento do Forms, ele fica verificando uma conversa do whatsapp e buscando na ultima mensagem um link do forms depois que ele acha chama outro script para preencher o formulario com os meus dados, esse formulario e para utilzar o transporte escolar da minha cidade
