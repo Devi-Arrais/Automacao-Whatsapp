@@ -18,7 +18,7 @@ def obter_ultima_mensagem_recebida(page):
     """
     # Busca todos os elementos que são mensagens recebidas
     # Usa o seletor composto: div com classe message-in
-    mensagens = page.query_selector_all("div.message-in")
+    mensagens = page.query_selector_all("div[data-testid='msg-container']")
     if not mensagens:
         return None
     # A última da lista é a mais recente (ordem DOM)

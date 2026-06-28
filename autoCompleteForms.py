@@ -31,7 +31,7 @@ def preencher_google_forms(link, dados, driver, primeiro_acesso=False):
     if primeiro_acesso:
         input(">>> Por favor, faça o login na sua conta Google e pressione ENTER aqui para continuar...")
 
-    wait = WebDriverWait(driver, 15)
+    wait = WebDriverWait(driver, 8)
 
     # --- 1. Aguardar o formulário carregar e marcar o checkbox do email ---
     try:
@@ -46,12 +46,11 @@ def preencher_google_forms(link, dados, driver, primeiro_acesso=False):
 
     # --- 2. Preencher Nome completo ---
     try:
-        xpath = "//*[text()='Nome completo'] | //*[contains(text(), 'Nome completo')]"
-        pergunta_elem = WebDriverWait(driver, 5).until(
-        EC.presence_of_element_located((By.XPATH, xpath))
-        )
-        nome = pergunta_elem.find_element(By.XPATH, "./following::input[1]")
-        nome.send_keys(dados["nome_completo"])
+        inputs = driver.find_elements(By.CSS_SELECTOR, "input[type='text']")
+        if len(inputs) >= 2:
+            nome = inputs[0]
+            nome.clear()
+            nome.send_keys(dados["nome_completo"])
     except Exception as e:
         print(f"Erro Nome: {e}")
 
@@ -147,7 +146,7 @@ def main(link):
         with open(os.path.join(AUTOMATION_PROFILE_DIR, "FirstRunDone"), 'w') as f:
             f.write("done")
             
-        time.sleep(1)
+        time.sleep(2)
     finally:
         driver.quit()
 
