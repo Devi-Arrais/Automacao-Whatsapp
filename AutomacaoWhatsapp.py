@@ -12,12 +12,9 @@ def extrair_link(texto):
 
 def obter_ultima_mensagem_recebida(page):
     """
-    Retorna o texto da última mensagem recebida (classe message-in).
-    Usa uma estratégia mais robusta: localiza todas as mensagens recebidas,
-    pega a última (por índice) e extrai o span do texto.
+    Retorna o texto da última mensagem.
     """
-    # Busca todos os elementos que são mensagens recebidas
-    # Usa o seletor composto: div com classe message-in
+    # Busca todos os elementos que são mensagens
     mensagens = page.query_selector_all("div[data-testid='msg-container']")
     if not mensagens:
         return None
